@@ -66,7 +66,7 @@ function createOperation(tree: TreeNode[], kind: Operation['kind'], value: numbe
       return { kind, value, steps, log: `${value} already exists` }
     }
 
-    const inserted: TreeNode = { id: newId, value, left: null, right: null }
+    const inserted: TreeNode = { id: newId, value, left: null, right: null, color: 'black' }
     nextTree.push(inserted)
     if (!parent || !direction) {
       steps.push(makeStep('done', newId, `Inserted ${value} as the root.`, nextTree))

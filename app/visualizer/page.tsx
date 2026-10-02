@@ -5,7 +5,7 @@ const categories = [
   { id: 'stack', label: 'Stack', description: 'Last in, first out. Explore push and pop.', color: 'bg-violet-500', href: '/visualizer/stack/array' },
   { id: 'queue', label: 'Queue', description: 'First in, first out. Follow the line.', color: 'bg-amber-500', href: '/visualizer/queue/array' },
   { id: 'linked-list', label: 'Linked List', description: 'Trace connections between changing nodes.', color: 'bg-emerald-500', href: '/visualizer/linked-list/singly' },
-  { id: 'tree', label: 'Tree', description: 'See hierarchy branch out from a root.', color: 'bg-rose-500', href: '#tree' },
+  { id: 'tree', label: 'Tree', description: 'See hierarchy branch out from a root.', color: 'bg-rose-500', href: '/visualizer/tree' },
   { id: 'graph', label: 'Graph', description: 'Understand networks through nodes and edges.', color: 'bg-blue-500', href: '#graph' },
 ]
 

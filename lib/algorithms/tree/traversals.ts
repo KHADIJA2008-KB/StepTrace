@@ -1,7 +1,7 @@
 import type { TreeNode } from './treeTypes'
 
 export type TreeStep = {
-  type: 'visit' | 'backtrack' | 'done'
+  type: 'visit' | 'backtrack' | 'done' | 'compare' | 'insert' | 'rotate' | 'found' | 'not-found'
   nodeId: string
   message: string
 }

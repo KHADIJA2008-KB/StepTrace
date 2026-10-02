@@ -3,4 +3,5 @@ export type TreeNode = {
   value: number
   left: string | null
   right: string | null
+  color: 'red' | 'black'
 }

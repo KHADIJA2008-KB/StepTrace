@@ -17,13 +17,13 @@ import { useStepPlayer } from '@/lib/visualizer/useStepPlayer'
 import type { Step } from '@/lib/visualizer/types'
 
 const sampleTree: TreeNode[] = [
-  { id: 'root', value: 5, left: 'left', right: 'right' },
-  { id: 'left', value: 3, left: 'left-left', right: 'left-right' },
-  { id: 'right', value: 8, left: 'right-left', right: 'right-right' },
-  { id: 'left-left', value: 1, left: null, right: null },
-  { id: 'left-right', value: 4, left: null, right: null },
-  { id: 'right-left', value: 7, left: null, right: null },
-  { id: 'right-right', value: 9, left: null, right: null },
+  { id: 'root', value: 5, left: 'left', right: 'right', color: 'black' },
+  { id: 'left', value: 3, left: 'left-left', right: 'left-right', color: 'black' },
+  { id: 'right', value: 8, left: 'right-left', right: 'right-right', color: 'black' },
+  { id: 'left-left', value: 1, left: null, right: null, color: 'black' },
+  { id: 'left-right', value: 4, left: null, right: null, color: 'black' },
+  { id: 'right-left', value: 7, left: null, right: null, color: 'black' },
+  { id: 'right-right', value: 9, left: null, right: null, color: 'black' },
 ]
 
 const traversalOptions = {

@@ -10,13 +10,13 @@ import {
 import type { TreeNode } from './treeTypes'
 
 const sampleTree: TreeNode[] = [
-  { id: 'a', value: 4, left: 'b', right: 'c' },
-  { id: 'b', value: 2, left: 'd', right: 'e' },
-  { id: 'c', value: 6, left: 'f', right: 'g' },
-  { id: 'd', value: 1, left: null, right: null },
-  { id: 'e', value: 3, left: null, right: null },
-  { id: 'f', value: 5, left: null, right: null },
-  { id: 'g', value: 7, left: null, right: null },
+  { id: 'a', value: 4, left: 'b', right: 'c', color: 'black' },
+  { id: 'b', value: 2, left: 'd', right: 'e', color: 'black' },
+  { id: 'c', value: 6, left: 'f', right: 'g', color: 'black' },
+  { id: 'd', value: 1, left: null, right: null, color: 'black' },
+  { id: 'e', value: 3, left: null, right: null, color: 'black' },
+  { id: 'f', value: 5, left: null, right: null, color: 'black' },
+  { id: 'g', value: 7, left: null, right: null, color: 'black' },
 ]
 
 function visitOrder(steps: ReturnType<typeof preorderTraversal>) {

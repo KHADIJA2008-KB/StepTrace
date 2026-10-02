@@ -14,7 +14,7 @@ test('ascending inserts trigger a single left rotation', () => {
   assert.deepEqual(rotations(steps), ['left'])
   const finalTree = steps.at(-1)?.treeAfter ?? []
   assert.equal(steps.at(-1)?.nodeId, 'node-2')
-  assert.deepEqual(finalTree.find((node) => node.id === 'node-2'), { id: 'node-2', value: 2, left: 'root', right: 'node-3' })
+  assert.deepEqual(finalTree.find((node) => node.id === 'node-2'), { id: 'node-2', value: 2, left: 'root', right: 'node-3', color: 'black' })
 })
 
 test('descending inserts trigger a single right rotation', () => {
@@ -33,11 +33,11 @@ test('left-right imbalance triggers a double rotation', () => {
 
 test('deletion can trigger rebalancing', () => {
   const nodes: TreeNode[] = [
-    { id: 'root', value: 4, left: 'node-2', right: 'node-6' },
-    { id: 'node-2', value: 2, left: null, right: null },
-    { id: 'node-6', value: 6, left: null, right: 'node-7' },
-    { id: 'node-7', value: 7, left: null, right: 'node-8' },
-    { id: 'node-8', value: 8, left: null, right: null },
+    { id: 'root', value: 4, left: 'node-2', right: 'node-6', color: 'black' },
+    { id: 'node-2', value: 2, left: null, right: null, color: 'black' },
+    { id: 'node-6', value: 6, left: null, right: 'node-7', color: 'black' },
+    { id: 'node-7', value: 7, left: null, right: 'node-8', color: 'black' },
+    { id: 'node-8', value: 8, left: null, right: null, color: 'black' },
   ]
   const steps = avlDelete(nodes, 'root', 2)
   assert.ok(steps.some((step) => step.type === 'rotate'))

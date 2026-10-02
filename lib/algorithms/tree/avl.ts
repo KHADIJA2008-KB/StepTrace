@@ -46,7 +46,7 @@ function replaceChild(nodes: TreeNode[], parentId: string | null, oldId: string,
   return rootId
 }
 
-function rotate(nodes: TreeNode[], rootId: string, pivotId: string, rotationType: 'left' | 'right') {
+export function rotateTree(nodes: TreeNode[], rootId: string, pivotId: string, rotationType: 'left' | 'right') {
   const { byId } = metrics(nodes)
   const pivot = byId.get(pivotId)
   if (!pivot) return rootId
@@ -74,13 +74,13 @@ function applyRotation(nodes: TreeNode[], rootId: string, pivotId: string, rotat
   let nextRootId = rootId
   if (rotationType === 'left-right') {
     const leftId = pivot.left
-    if (leftId) rotate(nodes, rootId, leftId, 'left')
-    nextRootId = rotate(nodes, rootId, pivotId, 'right')
+    if (leftId) rotateTree(nodes, rootId, leftId, 'left')
+    nextRootId = rotateTree(nodes, rootId, pivotId, 'right')
   } else if (rotationType === 'right-left') {
     const rightId = pivot.right
-    if (rightId) rotate(nodes, rootId, rightId, 'right')
-    nextRootId = rotate(nodes, rootId, pivotId, 'left')
-  } else nextRootId = rotate(nodes, rootId, pivotId, rotationType)
+    if (rightId) rotateTree(nodes, rootId, rightId, 'right')
+    nextRootId = rotateTree(nodes, rootId, pivotId, 'left')
+  } else nextRootId = rotateTree(nodes, rootId, pivotId, rotationType)
 
   const rootIndex = nodes.findIndex((node) => node.id === nextRootId)
   if (rootIndex > 0) {

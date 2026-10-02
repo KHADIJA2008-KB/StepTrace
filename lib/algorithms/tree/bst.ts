@@ -25,7 +25,7 @@ export function bstInsert(nodes: TreeNode[], rootId: string, value: number): BST
   const path: string[] = []
 
   if (tree.length === 0) {
-    const root: TreeNode = { id: rootId, value, left: null, right: null }
+    const root: TreeNode = { id: rootId, value, left: null, right: null, color: 'black' }
     return { tree: [root], path: [], nodeId: root.id, message: `Inserted ${value} as the root.` }
   }
 
@@ -38,7 +38,7 @@ export function bstInsert(nodes: TreeNode[], rootId: string, value: number): BST
     const direction = value < current.value ? 'left' : 'right'
     const childId = current[direction]
     if (!childId) {
-      const inserted: TreeNode = { id: nextNodeId(tree, value), value, left: null, right: null }
+      const inserted: TreeNode = { id: nextNodeId(tree, value), value, left: null, right: null, color: 'black' }
       current[direction] = inserted.id
       tree.push(inserted)
       return { tree, path: [...path, inserted.id], nodeId: inserted.id, message: `Inserted ${value} ${direction} of ${current.value}.` }

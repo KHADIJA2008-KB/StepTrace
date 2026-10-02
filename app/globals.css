@@ -205,6 +205,23 @@ html.dark .dark\:border-slate-800 {
     animation: tree-node-pulse 1100ms ease-in-out infinite;
   }
 
+  @keyframes fenwick-jump {
+    from {
+      stroke-dashoffset: 1;
+      opacity: 0.4;
+    }
+    to {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+
+  .animate-fenwick-jump {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: fenwick-jump 420ms ease-out forwards;
+  }
+
   .animate-ll-create:has(+ .sr-only),
   .border-amber-300 {
     animation: ll-pulse 1100ms ease-in-out infinite;

@@ -9,7 +9,15 @@ type TreeVisualizerProps = {
   rootId: string
   highlightedNodeId?: string | null
   visitedNodeIds?: string[]
+  highlightedPathNodeIds?: string[]
+  matchedNodeIds?: string[]
+  mismatchNodeId?: string | null
+  nodeLabels?: Map<string, string>
   rotationAnimation?: {
+    beforeNodes: TreeNode[]
+    key: string | number
+  }
+  colorAnimation?: {
     beforeNodes: TreeNode[]
     key: string | number
   }
@@ -33,7 +41,12 @@ export function TreeVisualizer({
   rootId,
   highlightedNodeId,
   visitedNodeIds = [],
+  highlightedPathNodeIds = [],
+  matchedNodeIds = [],
+  mismatchNodeId,
+  nodeLabels,
   rotationAnimation,
+  colorAnimation,
   balanceFactors,
 }: TreeVisualizerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -77,6 +90,10 @@ export function TreeVisualizer({
     () => new Map(beforeLayout.map((position) => [position.id, nodePosition(position, horizontalGap)])),
     [beforeLayout, horizontalGap],
   )
+  const beforeColorById = useMemo(
+    () => new Map((colorAnimation?.beforeNodes ?? []).map((node) => [node.id, node.color])),
+    [colorAnimation],
+  )
   const positionByNodeId = useMemo(
     () => new Map(positionedNodes.flatMap(({ node, position }) => node ? [[node.id, position] as const] : [])),
     [positionedNodes],
@@ -105,6 +122,9 @@ export function TreeVisualizer({
   const svgWidth = Math.max(containerWidth, PADDING * 2 + maxX * horizontalGap)
   const svgHeight = PADDING * 2 + (layout.reduce((maximum, position) => Math.max(maximum, position.y), 0) || 0)
   const visited = new Set(visitedNodeIds)
+  const highlightedPath = new Set(highlightedPathNodeIds)
+  const matched = new Set(matchedNodeIds)
+  const colorValue = (node: TreeNode) => node.color === 'red' ? '#dc2626' : '#0f172a'
 
   return (
     <div ref={containerRef} className="w-full overflow-x-auto rounded-xl border border-slate-200 bg-white p-1 dark:border-slate-700 dark:bg-slate-950" aria-label="tree visualizer">
@@ -127,6 +147,8 @@ export function TreeVisualizer({
               if (!childPosition) return []
               const child = animatedPositions.get(childId) ?? nodePosition(childPosition, horizontalGap)
               const from = animatedPositions.get(node.id) ?? position
+              const isPathEdge = (highlightedPath.has(node.id) && highlightedPath.has(childId))
+                || (matched.has(node.id) && matched.has(childId))
               return (
                 <line
                   key={`${node.id}-${childId}`}
@@ -134,9 +156,9 @@ export function TreeVisualizer({
                   y1={from.y}
                   x2={child.x}
                   y2={child.y}
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="text-slate-300 dark:text-slate-700"
+                  stroke={isPathEdge ? '#0f766e' : 'currentColor'}
+                  strokeWidth={isPathEdge ? 4 : 2}
+                  className={isPathEdge ? '' : 'text-slate-300 dark:text-slate-700'}
                   style={{ transition: isRotating ? 'x1 520ms ease, y1 520ms ease, x2 520ms ease, y2 520ms ease' : undefined }}
                 />
               )
@@ -147,6 +169,9 @@ export function TreeVisualizer({
             if (!node) return null
             const isHighlighted = highlightedNodeId === node.id
             const isVisited = visited.has(node.id)
+            const isPathNode = highlightedPath.has(node.id)
+            const isMatched = matched.has(node.id)
+            const isMismatch = mismatchNodeId === node.id
             const circleClass = isHighlighted
               ? 'tree-node-highlight text-amber-500'
               : isVisited
@@ -157,6 +182,9 @@ export function TreeVisualizer({
               : isVisited
                 ? 'fill-teal-50 dark:fill-teal-950'
                 : 'fill-white dark:fill-slate-900'
+            const fill = isHighlighted || isVisited ? undefined : colorValue(node)
+            const previousColor = beforeColorById.get(node.id)
+            const colorChanged = colorAnimation && previousColor && previousColor !== node.color
 
             return (
               <g
@@ -165,10 +193,23 @@ export function TreeVisualizer({
                 transform={`translate(${(animatedPositions.get(node.id) ?? position).x} ${(animatedPositions.get(node.id) ?? position).y})`}
                 style={{ transition: isRotating ? 'transform 520ms cubic-bezier(0.22, 1, 0.36, 1)' : undefined }}
               >
-                <circle r={NODE_RADIUS} className={fillClass} stroke="currentColor" strokeWidth="3" />
-                <text y="6" textAnchor="middle" className="fill-slate-800 text-sm font-semibold dark:fill-slate-100">
-                  {node.value}
-                </text>
+                {(isPathNode || isMatched || isMismatch) && <circle r={NODE_RADIUS + (isMismatch ? 7 : 6)} fill="none" stroke={isMismatch ? '#dc2626' : '#16a34a'} strokeWidth={isMismatch ? 4 : 2.5} strokeDasharray={isPathNode ? '4 3' : undefined} />}
+                <circle
+                  r={NODE_RADIUS}
+                  className={fillClass}
+                  fill={fill}
+                  stroke={isMismatch ? '#dc2626' : isHighlighted ? '#f59e0b' : 'currentColor'}
+                  strokeWidth={isMismatch || isHighlighted ? 4 : 3}
+                  style={{ transition: colorChanged ? 'fill 520ms ease, stroke 520ms ease' : undefined }}
+                />
+                {nodeLabels?.has(node.id) ? (
+                  <>
+                    <text y="-3" textAnchor="middle" className={fill ? 'fill-white text-xs font-bold' : 'fill-slate-800 text-xs font-bold dark:fill-slate-100'}>{nodeLabels.get(node.id)}</text>
+                    <text y="15" textAnchor="middle" className={fill ? 'fill-white/80 font-mono text-[9px]' : 'fill-slate-500 font-mono text-[9px] dark:fill-slate-300'}>{node.value}</text>
+                  </>
+                ) : (
+                  <text y="6" textAnchor="middle" className={fill ? 'fill-white text-sm font-semibold' : 'fill-slate-800 text-sm font-semibold dark:fill-slate-100'}>{node.value}</text>
+                )}
                 {balanceFactors && <text x="22" y="-20" textAnchor="middle" className="fill-teal-700 text-[10px] font-semibold dark:fill-teal-300">{balanceFactors.get(node.id) ?? 0}</text>}
                 <title>{`${node.id}: ${node.value}`}</title>
               </g>

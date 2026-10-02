@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "tsx --test lib/algorithms/stack/postfixEvaluator.test.ts lib/algorithms/linkedList/singlyLinkedList.test.ts lib/algorithms/linkedList/doublyLinkedList.test.ts lib/algorithms/linkedList/circularLinkedList.test.ts lib/algorithms/linkedList/operations.test.ts lib/algorithms/tree/traversals.test.ts lib/algorithms/tree/avl.test.ts"
+    "test": "tsx --test lib/algorithms/stack/postfixEvaluator.test.ts lib/algorithms/linkedList/singlyLinkedList.test.ts lib/algorithms/linkedList/doublyLinkedList.test.ts lib/algorithms/linkedList/circularLinkedList.test.ts lib/algorithms/linkedList/operations.test.ts lib/algorithms/tree/traversals.test.ts lib/algorithms/tree/avl.test.ts lib/algorithms/tree/trie.test.ts lib/algorithms/tree/redBlackTree.test.ts lib/algorithms/tree/segmentTree.test.ts lib/algorithms/tree/fenwickTree.test.ts lib/algorithms/tree/treeAlgorithms.test.ts lib/algorithms/tree/heapSort.test.ts lib/algorithms/tree/huffmanCoding.test.ts"
   },
   "dependencies": {
     "next": "14.2.35",
