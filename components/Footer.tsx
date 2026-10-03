@@ -33,7 +33,7 @@ export function Footer() {
       </div>
 
       <div className="mx-auto flex max-w-7xl flex-col gap-2 border-t border-white/[0.08] py-4 text-xs text-[#788f82] sm:flex-row sm:items-center sm:justify-between">
-        <p>Made by Khadija</p>
+        <p>Made by DJ</p>
         <p>© {year} StepTrace</p>
       </div>
     </footer>
