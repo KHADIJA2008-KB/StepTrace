@@ -15,8 +15,20 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "DSA Visualizer",
-  description: "Explore data structures and algorithms visually.",
+  title: "StepTrace",
+  description: "Step through interactive visualizations of data structures and algorithms.",
+  applicationName: "StepTrace",
+  openGraph: {
+    type: "website",
+    siteName: "StepTrace",
+    title: "StepTrace",
+    description: "Step through interactive visualizations of data structures and algorithms.",
+  },
+  twitter: {
+    card: "summary",
+    title: "StepTrace",
+    description: "Step through interactive visualizations of data structures and algorithms.",
+  },
 };
 
 export default function RootLayout({

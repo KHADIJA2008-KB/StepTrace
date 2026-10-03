@@ -1,10 +1,10 @@
-# 🧠 DSA Visualizer
+# StepTrace
 
-Watch algorithms actually *do* the thing, instead of just reading pseudocode and hoping it clicks.
+Watch algorithms actually *do* the thing instead of just reading pseudocode and hoping it clicks.
 
-This is an interactive tool for visualizing data structures and algorithms — sorting, searching, stacks, queues, linked lists, trees, and graphs — step by step, with play/pause/speed controls and the code running alongside the animation.
+StepTrace is a hands-on learning tool for data structures and algorithms. Follow sorting, searching, stacks, queues, linked lists, trees, and graphs step by step, with playback controls and code alongside the animation.
 
-Built because staring at Big-O notation in a textbook only gets you so far. Sometimes you just need to *see* the bars swap.
+I built it because staring at Big-O notation only gets you so far. Sometimes you just need to *see* the bars swap.
 
 ---
 
@@ -15,8 +15,10 @@ Built because staring at Big-O notation in a textbook only gets you so far. Some
 - 📚 **Stack** — Push/Pop, Peek, IsEmpty/IsFull, Postfix & Prefix evaluation
 - 🎟️ **Queue** — Enqueue/Dequeue, Circular, Priority, Deque
 - 🔗 **Linked List** — Singly, Doubly, Circular + all the usual operations
-- 🌳 **Tree** — BST, Traversals, AVL balancing, and yes, Tries and Segment Trees too
-- 🕸️ **Graph** — BFS, DFS, Dijkstra's, Prim's, Kruskal's
+- 🌳 **Tree** — BST, traversals, AVL and Red-Black balancing, tries, range trees, and more
+- 🕸️ **Graph** — Builder, BFS, DFS, Dijkstra's, Prim's, Kruskal's, and topological sort
+- 📈 **Complexity** — Big-O growth chart and searchable complexity reference
+- 📝 **Quizzes** — Topic quizzes with instant explanations and score summaries
 
 Each visualizer comes with:
 - ▶️ Play / pause / step-through controls
@@ -34,12 +36,12 @@ Each visualizer comes with:
 
 ---
 
-## 🚀 Getting started
+## Getting started
 
 ```bash
 # clone it
-git clone https://github.com/your-username/dsa-visualizer.git
-cd dsa-visualizer
+git clone https://github.com/KHADIJA2008-KB/DSA-VISUALIZER.git StepTrace
+cd StepTrace
 
 # install deps
 npm install
@@ -48,19 +50,19 @@ npm install
 npm run dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000) or you can also visit it on [DSA-Visualizer](https://dsa-visualizer-vone.vercel.app/) and start clicking around.
+Then open [http://localhost:3000](http://localhost:3000) or visit the [StepTrace deployment](https://dsa-visualizer-vone.vercel.app/) and start exploring.
 
 ---
 
 ## 🗺️ Roadmap
 
-This thing is being built in phases — not all modules are live yet. Rough order:
+The current learning modules include:
 
    - [x] Sorting + Searching
    - [x] Stack + Queue
    - [x] Linked List
-   - [ ] Trees (basic → advanced)   ← still in progress, 4A + 4B done, 4C + 4D left
-   - [ ] Graphs
-   - [ ] Quizzes / complexity cheat sheet
+   - [x] Trees (basic → advanced)
+   - [x] Graphs
+   - [x] Quizzes / complexity cheat sheet
 
 Check the [issues](../../issues) tab to see what's cooking or to suggest a module.

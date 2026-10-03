@@ -192,6 +192,43 @@ html.dark .dark\:border-slate-800 {
     animation: ll-link 520ms ease-out both;
   }
 
+  @keyframes hero-drift-one {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-9px) rotate(-1deg); }
+  }
+
+  @keyframes hero-drift-two {
+    0%, 100% { transform: translateY(0) rotate(3deg); }
+    50% { transform: translateY(8px) rotate(0deg); }
+  }
+
+  @keyframes hero-drift-three {
+    0%, 100% { transform: translateY(0) rotate(2deg); }
+    50% { transform: translateY(-7px) rotate(5deg); }
+  }
+
+  @keyframes hero-drift-four {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(9px) rotate(2deg); }
+  }
+
+  @keyframes hero-drift-five {
+    0%, 100% { transform: translateY(0) rotate(4deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+  }
+
+  @keyframes hero-drift-six {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(7px) rotate(1deg); }
+  }
+
+  .hero-float-one { animation: hero-drift-one 10.5s ease-in-out -1s infinite; }
+  .hero-float-two { animation: hero-drift-two 12s ease-in-out -4s infinite; }
+  .hero-float-three { animation: hero-drift-three 9.5s ease-in-out -6s infinite; }
+  .hero-float-four { animation: hero-drift-four 11.5s ease-in-out -2.5s infinite; }
+  .hero-float-five { animation: hero-drift-five 13s ease-in-out -8s infinite; }
+  .hero-float-six { animation: hero-drift-six 10s ease-in-out -5s infinite; }
+
   @keyframes tree-node-pulse {
     0%, 100% {
       filter: drop-shadow(0 0 0 rgb(245 158 11 / 0));
@@ -225,5 +262,16 @@ html.dark .dark\:border-slate-800 {
   .animate-ll-create:has(+ .sr-only),
   .border-amber-300 {
     animation: ll-pulse 1100ms ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-float-one,
+  .hero-float-two,
+  .hero-float-three,
+  .hero-float-four,
+  .hero-float-five,
+  .hero-float-six {
+    animation: none;
   }
 }

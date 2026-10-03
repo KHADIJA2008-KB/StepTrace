@@ -6,7 +6,7 @@ const categories = [
   { id: 'queue', label: 'Queue', description: 'First in, first out. Follow the line.', color: 'bg-amber-500', href: '/visualizer/queue/array' },
   { id: 'linked-list', label: 'Linked List', description: 'Trace connections between changing nodes.', color: 'bg-emerald-500', href: '/visualizer/linked-list/singly' },
   { id: 'tree', label: 'Tree', description: 'See hierarchy branch out from a root.', color: 'bg-rose-500', href: '/visualizer/tree' },
-  { id: 'graph', label: 'Graph', description: 'Understand networks through nodes and edges.', color: 'bg-blue-500', href: '#graph' },
+  { id: 'graph', label: 'Graph', description: 'Understand networks through nodes and edges.', color: 'bg-blue-500', href: '/visualizer/graph' },
 ]
 
 export default function VisualizerPage() {
@@ -39,6 +39,7 @@ export default function VisualizerPage() {
         <div className="mt-5 flex flex-wrap gap-3">
           <Link href="/visualizer/sorting/bubble" className="rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-teal-400 hover:text-slate-950">Sorting playground</Link>
           <Link href="/visualizer/searching/linear" className="rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-teal-400 hover:text-slate-950">Searching playground</Link>
+          <Link href="/visualizer/quiz" className="rounded-lg bg-white/10 px-4 py-2 text-sm transition hover:bg-teal-400 hover:text-slate-950">Algorithm quizzes</Link>
         </div>
       </section>
     </div>
